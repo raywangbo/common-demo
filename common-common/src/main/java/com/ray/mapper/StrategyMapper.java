@@ -1,6 +1,6 @@
 package com.ray.mapper;
 
-import com.quantuStar.core.entity.Strategy;
+import com.ray.entity.Strategy;
 
 import java.util.List;
 import java.util.Set;

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ray.mapper.StrategyMapper" >
+  <resultMap id="BaseResultMap" type="com.ray.entity.Strategy" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="permission" property="permission" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, remark, permission, type, status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from strategy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from strategy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ray.entity.Strategy" >
+    insert into strategy (id, name, remark, 
+      permission, type, status, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=TINYINT}, #{type,jdbcType=BIT}, #{status,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ray.entity.Strategy" >
+    insert into strategy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="permission != null" >
+        permission,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ray.entity.Strategy" >
+    update strategy
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        permission = #{permission,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ray.entity.Strategy" >
+    update strategy
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=TINYINT},
+      type = #{type,jdbcType=BIT},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getAllByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+     select
+    <include refid="Base_Column_List" />
+    from
+        strategy
+    where 1=1
+    <if test="name != null" >
+       and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="remark != null" >
+       and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    <if test="permission != null" >
+       and permission = #{permission,jdbcType=TINYINT}
+    </if>
+    <if test="type != null" >
+       and type = #{type,jdbcType=BIT}
+    </if>
+    <if test="status != null" >
+       and status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null" >
+       and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null" >
+       and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKeys" parameterType="java.lang.Integer" >
+    DELETE FROM strategy
+    where id in
+    <foreach item="item" index="index" collection="array" open="("
+            separator="," close=")">
+			#{item}
+		</foreach>
+  </delete>
+  <select id="countByMap" resultType="java.lang.Integer" parameterType="java.util.Map" >
+     select
+    COUNT(1)
+    from
+        strategy
+    where 1=1
+    <if test="name != null" >
+       and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="remark != null" >
+       and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    <if test="permission != null" >
+       and permission = #{permission,jdbcType=TINYINT}
+    </if>
+    <if test="type != null" >
+       and type = #{type,jdbcType=BIT}
+    </if>
+    <if test="status != null" >
+       and status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="createTime != null" >
+       and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null" >
+       and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

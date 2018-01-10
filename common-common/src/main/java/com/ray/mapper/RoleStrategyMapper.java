@@ -1,6 +1,6 @@
 package com.ray.mapper;
 
-import com.quantuStar.core.entity.RoleStrategyKey;
+import com.ray.entity.RoleStrategyKey;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.ray.mapper;
 
-import com.quantuStar.core.entity.AdminRoleKey;
+import com.ray.entity.AdminRoleKey;
 
 import java.util.List;
 
